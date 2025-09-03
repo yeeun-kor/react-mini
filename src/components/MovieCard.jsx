@@ -6,7 +6,7 @@ export default function MovieCard({ movie }) {
       <img
         src={`${BASE_IMG_URL}${movie.backdrop_path}`}
         alt="posterImg"
-        className="aspect-[2/3] object-cover"
+        className="aspect-[2/3] max-h-[240px] object-cover"
       />
       <div className="p-2">
         <h1 className="truncate font-bold">제목 {movie.title}</h1>
