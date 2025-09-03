@@ -2,15 +2,15 @@ import { Link } from 'react-router-dom';
 
 export default function NavBar() {
   return (
-    <nav className="w-full bg-white px-3 py-2 shadow-md">
-      <div className="flex max-w-[1080px] items-center justify-between gap-4 p-4">
+    <nav className="w-full bg-black px-3 py-2 text-white shadow-md">
+      <div className="m-auto flex max-w-[1080px] items-center justify-between gap-4 p-4">
         <h1 className="text-3xl font-bold">
           <Link to={'/'}>🎬 OZ무비</Link>
         </h1>
         <input
           type="text"
           placeholder="영화검색하기"
-          className="flex-1 border-b"
+          className="w-full flex-1 border-b"
         />
 
         <div className="flex gap-2">

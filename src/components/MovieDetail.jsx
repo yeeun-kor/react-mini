@@ -2,7 +2,7 @@ import { BASE_IMG_URL } from '@/App';
 
 export default function MovieDetail({ detail }) {
   return (
-    <div className="grid grid-cols-8 grid-rows-5 gap-5 p-3">
+    <div className="mx-auto grid max-w-[1080px] grid-cols-8 grid-rows-5 gap-3 border-2 p-5">
       <img
         src={`${BASE_IMG_URL}${detail.backdrop_path}`}
         alt="posterImg"

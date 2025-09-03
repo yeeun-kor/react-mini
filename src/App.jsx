@@ -6,7 +6,7 @@ import movieListData from './data/movieListData.json';
 
 // Import Swiper styles
 import 'swiper/css';
-import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 //상수
@@ -19,19 +19,16 @@ function App() {
     <>
       <h1 className="bg-amber-300 p-3 text-center text-3xl">이달의 영화</h1>
       <Swiper
-        // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={50}
+        modules={[Navigation, Pagination]}
+        spaceBetween={20}
         slidesPerView={3}
-        className="max-w-[1080px]"
         navigation
+        className="max-w-[1080px]"
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
       >
         {movies.map((movie) => (
-          <SwiperSlide>
+          <SwiperSlide className="border-2 px-4">
             <Link key={movie.id} to={'/details'}>
               <MovieCard key={movie.id} movie={movie}></MovieCard>
             </Link>
@@ -42,7 +39,7 @@ function App() {
       <main className="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-5 py-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {movies.map((movie) => (
           <Link key={movie.id} to={'/details'}>
-            <MovieCard key={movie.id} movie={movie}></MovieCard>
+            <MovieCard movie={movie}></MovieCard>
           </Link>
         ))}
       </main>
