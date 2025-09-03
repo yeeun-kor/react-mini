@@ -1,4 +1,5 @@
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
+import { BASE_IMG_URL } from '@/App';
+
 export default function MovieCard({ movie }) {
   return (
     <div className="my-2 flex h-full flex-col gap-2 overflow-hidden rounded-lg border border-gray-400 shadow-lg">
