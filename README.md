@@ -10,15 +10,7 @@
 
 ---
 
-## 📌 변수명 네이밍 컨벤션
-
-본 프로젝트에서는 일관성 있는 변수명 작성 규칙을 지켜 가독성과 유지보수성을 높이고자 합니다.
-
-
-
----
-
-## **1. 더미데이터를 사용한 메인 페이지 (App.jsx) 레이아웃 구성**
+## 1. 더미데이터를 사용한 메인 페이지 (App.jsx) 레이아웃 구성
 
 ### **요구 사항:**
 
@@ -33,9 +25,24 @@
 먼저, **`App.jsx`** 파일에서 **`movieListData.json`** 데이터를 import하여 상태로 관리하여 `const movies `라는 이름으로 저장하였다.
 그리고 data 값을 map 함수로 돌려서 `MovieCard` 데이터를 `props` 로 전달하였다.
 
+> `import` 필수 !
+
 ```jsx
+import movieListData from './data/movieListData.json';
 const [movies, setMovies] = useState(movieListData.results);
+
 {
   movies.map((movie) => <MovieCard key={movie.id} movie={movie}></MovieCard>);
 }
 ```
+
+---
+
+## 2. 더미데이터를 사용한 상세 페이지 (MovieDetail.jsx) 레이아웃 구성
+
+### **구현 단계:**
+
+1. **`MovieDetail`** 컴포넌트를 생성합니다.
+2. **`movieDetailData.json`** 데이터를 import하여 **상태로 관리**합니다.
+3. 상세 페이지 레이아웃에 필요한 요소를 JSX로 추가합니다.
+4. Flexbox 또는 Grid를 사용하여 레이아웃을 구성합니다.
