@@ -3,6 +3,7 @@ import './App.css';
 import MovieCard from './components/MovieCard';
 import movieListData from './data/movieListData.json';
 
+//TODOS data:RTK로 관리하기
 function App() {
   //json 데이터 가져오기
   const [movies, setMovies] = useState(movieListData.results);
