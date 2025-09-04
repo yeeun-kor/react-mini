@@ -1,16 +1,12 @@
-# 1단계 미션지 : 메인 페이지 및 영화 상세 페이지 레이아웃 구성
+# 1단계
 
-> 📌 React와 CSS의 Flexbox 또는 Grid를 사용
->
-> 영화 메인 페이지와 상세 페이지의 기본 레이아웃을 구성.
->
-> - React-Router-Dom을 사용하여 라우팅을 구현합니다.
-> - .gitignore를 사용하여 불필요한 파일이 Git에 업로드되지 않도록 합니다.
-> - VSCode에 React 앱 생성 (**Vite**)
+## 1단계 미션지 : 메인 페이지 및 영화 상세 페이지 레이아웃 구성
 
----
+📌 React와 CSS의 Flexbox 또는 Grid를 사용하여 영화 메인 페이지와 상세 페이지의 기본 레이아웃을 구성하고, React-Router-Dom을 사용하여 라우팅을 구현합니다. 또한, .gitignore를 사용하여 불필요한 파일이 Git에 업로드되지 않도록 합니다.
 
-## 1. 더미데이터를 사용한 메인 페이지 (App.jsx) 레이아웃 구성
+- VSCode에 React 앱 생성 (**Vite**)
+
+## **1. 더미데이터를 사용한 메인 페이지 (App.jsx) 레이아웃 구성**
 
 ### **요구 사항:**
 
@@ -20,29 +16,79 @@
 - **`MovieCard`** 컴포넌트를 생성하고 영화를 렌더링합니다.
 - **`MovieCard`** 컴포넌트에 포스터와 제목, 평점 정보를 전달해야 합니다.
 
-### 1-1. movieListData.json 상태 관리
+## **2. 더미데이터를 사용한 상세 페이지 (MovieDetail.jsx) 레이아웃 구성**
 
-먼저, **`App.jsx`** 파일에서 **`movieListData.json`** 데이터를 import하여 상태로 관리하여 `const movies `라는 이름으로 저장하였다.
-그리고 data 값을 map 함수로 돌려서 `MovieCard` 데이터를 `props` 로 전달하였다.
+### **요구 사항:**
 
-> `import` 필수 !
+- 주어진 더미데이터의 압축을 풀고 **`movieDetailData.json`**을 이용하여 상세 페이지 레이아웃을 구성하세요.
 
-```jsx
-import movieListData from './data/movieListData.json';
-const [movies, setMovies] = useState(movieListData.results);
+### **상세 페이지에 포함될 요소**
 
-{
-  movies.map((movie) => <MovieCard key={movie.id} movie={movie}></MovieCard>);
-}
-```
+- **backdrop_path**: 영화의 배경 이미지 경로 or **poster_path**: 영화 포스터 이미지 경로
+- **title**: 제목
+- **vote_average**: 평균 평점
+- **genres**: 영화의 장르 배열
+- **overview**: 영화의 줄거리
 
----
+<details><summary> `movieDetailData.json`에는 아래와 같은 영화 정보가 들어 있습니다:
+</summary>
 
-## 2. 더미데이터를 사용한 상세 페이지 (MovieDetail.jsx) 레이아웃 구성
+ - **backdrop_path**: 영화의 배경 이미지 경로
 
-### **구현 단계:**
+- **belongs_to_collection**: 컬렉션에 속한 경우 컬렉션 정보 (여기서는 **`null`**로 설정)
 
-1. **`MovieDetail`** 컴포넌트를 생성합니다.
-2. **`movieDetailData.json`** 데이터를 import하여 **상태로 관리**합니다.
-3. 상세 페이지 레이아웃에 필요한 요소를 JSX로 추가합니다.
-4. Flexbox 또는 Grid를 사용하여 레이아웃을 구성합니다.
+- **budget**: 영화의 제작 예산
+
+- **genres**: 영화의 장르 배열
+
+- **homepage**: 영화의 공식 홈페이지
+- **id**: 영화의 고유 ID
+- **imdb_id**: IMDb에서 영화의 고유 ID
+- **original_language**: 원어
+- **original_title**: 원제목
+- **overview**: 영화의 줄거리
+- **popularity**: 영화의 인기 지수
+- **poster_path**: 영화 포스터 이미지 경로
+- **production_companies**: 제작사 배열
+- **release_date**: 개봉일
+- **revenue**: 수익
+- **runtime**: 상영 시간 (분)
+- **spoken_languages**: 사용된 언어 배열
+- **status**: 개봉 상태
+- **tagline**: 태그라인
+- **title**: 제목
+- **video**: 비디오 여부
+- **vote_average**: 평균 평점
+- **vote_count**: 평점 수
+</details>
+
+
+
+## **3. React-Router-Dom을 사용하여 라우팅 구성**
+
+### **요구 사항:**
+
+- **`react-router-dom`**을 설치하고 설정합니다.
+- 라우팅을 구성하여 다음 경로를 설정합니다:
+    - **`/`** 경로: 메인 페이지 ( **App.jsx** )
+    - **`/details`** 경로: 상세 페이지 ( **MovieDetail.jsx** )
+
+
+
+    ## **4. Layout Component를 사용하여 Nav바 상단에 표시**
+
+### **요구 사항:**
+
+- `Layout` 컴포넌트를 사용하여 앱의 모든 페이지 상단에 `NavBar`가 표시될 수 있도록 합니다.
+
+
+## **🔥 도전 미션(기본 미션을 다 수행한 후 진행하세요.)**
+
+## **1. 슬라이드 구현하기 (Swiper 사용 또는 Swiper 없이 구현하기)**
+
+### **요구 사항:**
+
+- 영화 목록을 슬라이드 형식으로 보여주는 UI를 구현합니다.
+- **`Swiper`** 라이브러리를 사용하거나, 직접 CSS와 JavaScript를 활용하여 슬라이드를 구현할 수 있습니다.
+
+###
