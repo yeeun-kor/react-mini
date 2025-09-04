@@ -1,6 +1,15 @@
 import { BASE_IMG_URL } from '@/App';
+import { useFetch } from '@/hook/useFetch';
+import { useParams } from 'react-router-dom';
 
-export default function MovieDetail({ detail }) {
+export default function MovieDetail() {
+  //객체로 id값 받아오기
+  const { id } = useParams();
+  console.log(id);
+  const detail = useFetch(
+    `https://api.themoviedb.org/3/movie/${id}?language=ko`,
+  );
+  console.log(detail);
   return (
     <div className="mx-auto grid max-w-[1080px] grid-cols-8 grid-rows-5 gap-3 border-2 p-5">
       <img
@@ -18,7 +27,7 @@ export default function MovieDetail({ detail }) {
       </h3>
       <div className="col-span-4 row-span-1 flex items-center justify-around bg-indigo-300 p-3">
         장르{' '}
-        {detail.genres.map((itm) => (
+        {detail?.genres?.map((itm) => (
           <p key={itm.id} className="rounded-3xl border px-3">
             {itm.name}
           </p>
