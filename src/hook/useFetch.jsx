@@ -1,4 +1,4 @@
-import { API_KEY } from '@/App';
+import { API_KEY } from '@/data/movieApi';
 import { useEffect, useState } from 'react';
 
 export const useFetch = (url) => {
