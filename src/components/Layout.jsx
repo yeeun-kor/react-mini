@@ -11,6 +11,7 @@ export default function Layout() {
       <div className="pt-1">
         <Outlet></Outlet>
       </div>
+      <footer className="bg-fuchsia-400 py-3 text-center"> 푸터입니다,</footer>
     </div>
   );
 }

@@ -17,6 +17,7 @@ createRoot(document.getElementById('root')).render(
           path="/details"
           element={<MovieDetail detail={detail}></MovieDetail>}
         ></Route>
+
       </Route>
     </Routes>
   </BrowserRouter>,
