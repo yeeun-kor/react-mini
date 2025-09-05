@@ -10,7 +10,7 @@ export default function MovieDetail() {
   return (
     <div className="mx-auto grid max-w-[1080px] grid-cols-8 grid-rows-5 gap-3 p-5">
       <img
-        src={`${BASE_IMG_URL}${detail.backdrop_path}`}
+        src={`${BASE_IMG_URL}${detail.poster_path}`}
         alt="posterImg"
         className="col-span-4 row-span-5 aspect-[2/3] object-cover"
       />

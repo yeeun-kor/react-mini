@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
-
+  //비동기 처리 응답요청이 제대로 되었는지 상태플래그 설정
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,13 +19,14 @@ export const useFetch = (url) => {
         const res = await fetch(url, options);
         const json = await res.json();
         console.log(json);
-        //results사용 안하고!!! 그냥 객체 전체 받아와라 !! 재사용성 높이게
         setData(json);
+        setLoading(false); //로딩완료되었는지
       } catch (error) {
         console.log(error);
+        setError(error);
       }
     };
     fetchData();
   }, [url]);
-  return data;
+  return { data, loading, error };
 };
