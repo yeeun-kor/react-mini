@@ -1,104 +1,41 @@
-# 1단계
+# 2단계
 
-<br/>
+## **2단계 미션지 : TMdb API를 이용한 영화 웹 애플리케이션 확장**
 
-## 1단계 미션지 : 메인 페이지 및 영화 상세 페이지 레이아웃 구성
+> 📌 [TMdb](https://www.themoviedb.org/) API를 사용하여 동적으로 데이터를 가져오고,
+> 클릭한 영화 정보에 맞는 영화 상세페이지로 이동하도록 라우팅을 구현합니다.
 
-📌 React와 CSS의 Flexbox 또는 Grid를 사용하여 영화 메인 페이지와 상세 페이지의 기본 레이아웃을 구성하고, React-Router-Dom을 사용하여 라우팅을 구현합니다. 또한, .gitignore를 사용하여 불필요한 파일이 Git에 업로드되지 않도록 합니다.
+### **준비물**
 
-- VSCode에 React 앱 생성 (**Vite**)
-
-<br/>
-
-## **1. 더미데이터를 사용한 메인 페이지 (App.jsx) 레이아웃 구성**
-
-### **요구 사항:**
-
-> ⭐ 이미지 baseUrl = "https://image.tmdb.org/t/p/w500"
-
-- 주어진 더미데이터의 압축을 풀고 **`movieListData.json`**을 이용하여 메인 페이지 레이아웃을 구성하세요.
-- **`MovieCard`** 컴포넌트를 생성하고 영화를 렌더링합니다.
-- **`MovieCard`** 컴포넌트에 포스터와 제목, 평점 정보를 전달해야 합니다.
+- [TMdb API 읽기 액세스 토큰 발급](https://www.themoviedb.org/settings/api)
+- [TMbd API docs](https://developer.themoviedb.org/reference/intro/getting-started)
 
 <br/>
 <br/>
 
-## **2. 더미데이터를 사용한 상세 페이지 (MovieDetail.jsx) 레이아웃 구성**
+## **1. TMdb DB와 프로젝트를 연결 (**API 읽기 액세스 토큰**)**
 
-### **요구 사항:**
+### **요구 사항**
 
-- 주어진 더미데이터의 압축을 풀고 **`movieDetailData.json`**을 이용하여 상세 페이지 레이아웃을 구성하세요.
-
-<br/>
-
-### **상세 페이지에 포함될 요소**
-
-- **backdrop_path**: 영화의 배경 이미지 경로 or **poster_path**: 영화 포스터 이미지 경로
-- **title**: 제목
-- **vote_average**: 평균 평점
-- **genres**: 영화의 장르 배열
-- **overview**: 영화의 줄거리
-
-<details><summary> `movieDetailData.json`에는 아래와 같은 영화 정보가 들어 있습니다:
-</summary>
-
-- **backdrop_path**: 영화의 배경 이미지 경로
-
-- **belongs_to_collection**: 컬렉션에 속한 경우 컬렉션 정보 (여기서는 **`null`**로 설정)
-
-- **budget**: 영화의 제작 예산
-
-- **genres**: 영화의 장르 배열
-
-- **homepage**: 영화의 공식 홈페이지
-- **id**: 영화의 고유 ID
-- **imdb_id**: IMDb에서 영화의 고유 ID
-- **original_language**: 원어
-- **original_title**: 원제목
-- **overview**: 영화의 줄거리
-- **popularity**: 영화의 인기 지수
-- **poster_path**: 영화 포스터 이미지 경로
-- **production_companies**: 제작사 배열
-- **release_date**: 개봉일
-- **revenue**: 수익
-- **runtime**: 상영 시간 (분)
-- **spoken_languages**: 사용된 언어 배열
-- **status**: 개봉 상태
-- **tagline**: 태그라인
-- **title**: 제목
-- **video**: 비디오 여부
-- **vote_average**: 평균 평점
-- **vote_count**: 평점 수
-</details>
+- **TMdb API 읽기 액세스 토큰**를 발급받고 프로젝트 루트 디렉토리에 **`.env`** 파일을 생성하여 저장합니다.
+- **`.env`** 파일을 **`.gitignore`** 파일에 추가하여 **`.env`** 파일이 github에 업로드 되지 않도록 설정합니다.
+- 환경변수로 **API 읽기 액세스 토큰**를 이용할 수 있도록 설정합니다.
 
 <br/>
 <br/>
 
-## **3. React-Router-Dom을 사용하여 라우팅 구성**
+## **2. API 호출해서 더미데이터를 응답 데이터로 변경**
 
-### **요구 사항:**
+### **요구 사항**
 
-- **`react-router-dom`**을 설치하고 설정합니다.
-- 라우팅을 구성하여 다음 경로를 설정합니다:
-  - **`/`** 경로: 메인 페이지 ( **App.jsx** )
-  - **`/details`** 경로: 상세 페이지 ( **MovieDetail.jsx** )
+- TMdb API를 사용하여 영화 응답 데이터를 기반으로 메인 페이지를 구성합니다.
+- 영화 데이터를 메인 페이지에 표시할 때, **`adult`** 값이 **`false`**인 영화만 필터링하여 제공합니다.
+  - 이를 통해 성인 콘텐츠를 제외하고, 사용자에게 안전한 영화 데이터를 노출할 수 있습니다.
 
-<br/>
+<br/><br/>
 
-## **4. Layout Component를 사용하여 Nav바 상단에 표시**
+## **3. 클릭한 MovieCard에 맞는 MovieDetail로 이동하도록 라우팅**
 
-### **요구 사항:**
+### **요구 사항**
 
-- `Layout` 컴포넌트를 사용하여 앱의 모든 페이지 상단에 `NavBar`가 표시될 수 있도록 합니다.
-
-<br/>
-<br/>
-
-## **🔥 도전 미션**
-
-## **슬라이드 구현하기 (Swiper 사용 또는 Swiper 없이 구현하기)**
-
-### **요구 사항:**
-
-- 영화 목록을 슬라이드 형식으로 보여주는 UI를 구현합니다.
-- **`Swiper`** 라이브러리를 사용하거나, 직접 CSS와 JavaScript를 활용하여 슬라이드를 구현할 수 있습니다.
+- 각 **`MovieCard`**를 클릭하면 해당 영화의 상세 정보를 보여주는 **`MovieDetail`** 페이지로 이동하도록 **동적 라우팅**을 활용하여 **라우팅을** 설정합니다.

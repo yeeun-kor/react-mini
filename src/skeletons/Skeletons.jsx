@@ -1,6 +1,4 @@
-import { BASE_IMG_URL } from '@/data/movieApi';
-
-export default function MovieCard({ movie }) {
+export default function Skeletons({ movie }) {
   return (
     <div className="my-2 flex h-full flex-col gap-2 overflow-hidden rounded-lg border border-gray-400 shadow-lg">
       <img
