@@ -20,12 +20,26 @@ export function App() {
         <>
           <Swiper
             modules={[Navigation, Pagination]}
-            spaceBetween={10}
-            slidesPerView={5}
+            // spaceBetween={10}
+            // slidesPerView={5}
             navigation
             className="max-w-[1080px]"
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              375: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+            }}
           >
             {Array.from({ length: 3 }).map((_, idx) => (
               <SwiperSlide key={'SkeletonSlide' + idx} className="mb-5 px-4">
