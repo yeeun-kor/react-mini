@@ -4,6 +4,7 @@ import App from './App';
 import Layout from './components/Layout';
 import MovieDetail from './components/MovieDetail';
 import './index.css';
+import { Search } from './Search';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
           path="/details/:id"
           element={<MovieDetail></MovieDetail>}
         ></Route>
+        <Route path="/search" element={<Search></Search>}></Route>
       </Route>
     </Routes>
   </BrowserRouter>,
