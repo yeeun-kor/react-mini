@@ -6,7 +6,7 @@ export const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 //영화리스트 api
 export const API_URL =
-  'https://api.themoviedb.org/3/movie/popular?language=ko&page=1';
+  'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko&page=3&sort_by=popularity.desc';
 
 //영화디테일 api
 export const DETAIL_URL = 'https://api.themoviedb.org/3/movie/';
