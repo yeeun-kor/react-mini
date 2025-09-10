@@ -6,7 +6,7 @@ import MovieDetail from './components/MovieDetail';
 import './index.css';
 import Login from './pages/Login';
 import { Search } from './pages/Search';
-import { SignUp } from './pages/Signup';
+import { SignUp } from './pages/SignUp';
 import { AuthProvider } from './supabase/authUser';
 import { SupabaseProvider } from './supabase/client';
 
