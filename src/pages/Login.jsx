@@ -43,7 +43,7 @@ export default function Login() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="OZ무비"
-            src="/src/assets/logo.png"
+            src={logo}
             className="mx-auto h-30 w-auto dark:hidden"
           />
           <img
