@@ -10,7 +10,9 @@ export default function MovieCard({ movie }) {
       />
       <div className="p-2">
         <h1 className="truncate font-bold">제목 {movie.title}</h1>
-        <h3 className="text-gray-600">평점 {movie.vote_average}</h3>
+        <h3 className="text-gray-600 dark:text-neutral-400">
+          평점 {movie.vote_average}
+        </h3>
       </div>
     </div>
   );

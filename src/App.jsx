@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './App.css';
 import MovieCard from './components/MovieCard';
 // 캐러셀 라이브러리
@@ -14,7 +14,9 @@ export function App() {
 
   return (
     <>
-      <h1 className="bg-amber-300 p-3 text-center text-3xl">이달의 영화</h1>
+      <h1 className="mx-auto my-10 w-1/2 rounded-2xl bg-amber-300 py-5 text-center text-3xl font-bold">
+        이달의 영화
+      </h1>
       {/* 스켈레톤 */}
       {loading ? (
         <>
@@ -72,10 +74,12 @@ export function App() {
           </Swiper>
         </>
       )}
-      <h1 className="bg-red-300 p-3 text-center text-3xl">금주 인기 영화</h1>
+      <h1 className="mx-auto my-10 w-1/2 rounded-2xl bg-red-300 py-5 text-center text-3xl font-bold dark:drop-shadow-yellow-50">
+        금주 인기 영화
+      </h1>
 
       {loading ? (
-        <main className="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-5 py-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        <main className="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-5 py-3 shadow-lg sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 dark:shadow-cyan-500/50">
           {Array.from({ length: 20 }).map((_, idx) => (
             <SkeletonMovieList />
           ))}

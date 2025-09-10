@@ -1,6 +1,6 @@
+import MovieCard from '@/components/MovieCard';
+import { useSearch } from '@/hook/useSearch';
 import { Link, useSearchParams } from 'react-router-dom';
-import MovieCard from './components/MovieCard';
-import { useSearch } from './hook/useSearch';
 
 export const Search = () => {
   //검색어 전체

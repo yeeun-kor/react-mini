@@ -1,9 +1,11 @@
 @layer theme, base, components, utilities;
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/preflight.css' layer(base);
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import url('https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+
 @font-face {
   font-family: 'Wanted Sans';
   font-style: normal;

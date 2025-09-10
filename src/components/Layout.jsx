@@ -8,7 +8,7 @@ export default function Layout() {
   return (
     <div>
       <NavBar></NavBar>
-      <div className="pt-1">
+      <div className="min-h-screen pt-1 dark:bg-gray-800 dark:text-white">
         <Outlet></Outlet>
       </div>
     </div>
