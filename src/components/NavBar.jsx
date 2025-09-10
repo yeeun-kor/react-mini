@@ -3,6 +3,7 @@ import { useSupabase } from '@/supabase/client';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { UserCircleIcon } from '@heroicons/react/16/solid';
 import { Link } from 'react-router-dom';
+import DarkModeToggle from './DartkBodeToggle';
 import { SearchBar } from './SearchBar';
 
 export default function NavBar() {
@@ -28,6 +29,7 @@ export default function NavBar() {
           </Link>
         </h1>
         <SearchBar></SearchBar>
+        <DarkModeToggle></DarkModeToggle>
         <div className="flex items-center gap-2 md:flex-row">
           {user ? (
             <>

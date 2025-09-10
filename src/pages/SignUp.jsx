@@ -46,7 +46,7 @@ export const SignUp = () => {
   }
   return (
     <form
-      className="py -10 m-auto max-w-[960px] px-5"
+      className="m-auto max-w-[960px] px-5 py-10"
       onSubmit={handlerSubmit}
       method="POST"
     >
