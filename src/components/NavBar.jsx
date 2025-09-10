@@ -1,3 +1,4 @@
+import logo from '@/assets/logo.png';
 import { useAuth } from '@/supabase/authUser';
 import { useSupabase } from '@/supabase/client';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
@@ -25,7 +26,7 @@ export default function NavBar() {
       <div className="m-auto flex max-w-[1080px] flex-col items-center justify-between gap-4 p-4 md:flex-row">
         <h1 className="text-lg font-bold md:text-3xl">
           <Link to={'/'} className="flex items-center justify-center">
-            <img src="/src/assets/logo.png" alt="" className="h-20" /> OZ무비
+            <img src={logo} alt="" className="h-20" /> OZ무비
           </Link>
         </h1>
         <SearchBar></SearchBar>

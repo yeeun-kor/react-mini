@@ -1,3 +1,4 @@
+import logo from '@/assets/logo.png';
 import Button from '@/components/Button';
 import InputField from '@/components/InputField';
 import { useAuth } from '@/supabase/authUser';
@@ -5,7 +6,6 @@ import { useSupabase } from '@/supabase/client';
 import { validateEmailFn, validatePasswordFn } from '@/utils/validate';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 export default function Login() {
   const naviagate = useNavigate();
   //로그인 유효성 검사
@@ -48,7 +48,7 @@ export default function Login() {
           />
           <img
             alt="OZ무비"
-            src="/src/assets/logo.png"
+            src={logo}
             className="mx-auto h-30 w-auto not-dark:hidden"
           />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
