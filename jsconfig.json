@@ -14,7 +14,7 @@
     "src/**/*.jsx", // 'src' 폴더 내에 있는 모든 JSX 파일 포함 (React 파일)
     "src/**/*.ts", // 'src' 폴더 내에 있는 모든 TypeScript 파일 포함
     "src/**/*.tsx" // 'src' 폴더 내에 있는 모든 TSX 파일 포함 (React와 TypeScript를 같이 사용할 때)
-  ],
+, "src/skeletons/SkeletonMovieDetail.jsx"  ],
   "exclude": [
     "node_modules", // 'node_modules' 폴더는 검사하지 않음
     "**/node_modules", // 서브 디렉토리의 'node_modules'도 검사하지 않음

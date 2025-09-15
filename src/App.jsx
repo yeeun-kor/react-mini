@@ -1,101 +1,32 @@
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import MovieCard from './components/MovieCard';
 // 캐러셀 라이브러리
 import 'swiper/css';
-import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { API_URL } from './data/movieApi';
-import { useFetch } from './hook/useFetch';
-import SkeletonMovieList from './skeletons/movieList';
+import Layout from './components/Layout';
+import MovieDetail from './components/MovieDetail';
+import Login from './pages/Login';
+import Main from './pages/Main';
+import { Search } from './pages/Search';
+import { SignUp } from './pages/SignUp';
 
 export function App() {
-  const { data: movies, loading, error } = useFetch(API_URL);
-
   return (
     <>
-      <h1 className="mx-auto my-10 w-1/2 rounded-2xl bg-amber-300 py-5 text-center text-3xl font-bold">
-        이달의 영화
-      </h1>
-      {/* 스켈레톤 */}
-      {loading ? (
-        <>
-          <Swiper
-            modules={[Navigation, Pagination]}
-            // spaceBetween={10}
-            // slidesPerView={5}
-            navigation
-            className="max-w-[1080px]"
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            breakpoints={{
-              0: {
-                slidesPerView: 1,
-                spaceBetween: 10,
-              },
-              375: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-              },
-            }}
-          >
-            {Array.from({ length: 3 }).map((_, idx) => (
-              <SwiperSlide key={'SkeletonSlide' + idx} className="mb-5 px-4">
-                <SkeletonMovieList />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </>
-      ) : error ? (
-        <h2>에러발생</h2>
-      ) : (
-        <>
-          <Swiper
-            modules={[Navigation, Pagination]}
-            spaceBetween={10}
-            slidesPerView={5}
-            navigation
-            className="max-w-[1080px]"
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-          >
-            {movies.results &&
-              movies.results.map((movie) => (
-                <SwiperSlide key={movie.id} className="mb-5 px-4">
-                  <Link to={`/details/${movie.id}`}>
-                    <MovieCard movie={movie}></MovieCard>
-                  </Link>
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        </>
-      )}
-      <h1 className="mx-auto my-10 w-1/2 rounded-2xl bg-red-300 py-5 text-center text-3xl font-bold dark:drop-shadow-yellow-50">
-        금주 인기 영화
-      </h1>
-
-      {loading ? (
-        <main className="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-5 py-3 shadow-lg sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 dark:shadow-cyan-500/50">
-          {Array.from({ length: 20 }).map((_, idx) => (
-            <SkeletonMovieList />
-          ))}
-        </main>
-      ) : (
-        <main className="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-5 py-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-          {movies.results &&
-            movies.results
-              .filter((movie) => movie.adult === false)
-              .map((movie) => (
-                <Link key={movie.id} to={`/details/${movie.id}`}>
-                  <MovieCard movie={movie}></MovieCard>
-                </Link>
-              ))}
-        </main>
-      )}
+      {' '}
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout></Layout>}>
+            <Route path="/" element={<Main></Main>}></Route>
+            <Route
+              path="/details/:id"
+              element={<MovieDetail></MovieDetail>}
+            ></Route>
+            <Route path="/search" element={<Search></Search>}></Route>
+            <Route path="/signup" element={<SignUp></SignUp>}></Route>
+            <Route path="/login" element={<Login></Login>}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

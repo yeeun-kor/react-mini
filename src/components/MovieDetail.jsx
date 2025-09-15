@@ -1,8 +1,8 @@
 import { BASE_IMG_URL, DETAIL_URL } from '@/data/movieApi';
 import { useFetch } from '@/hook/useFetch';
-import { SkeletonMovieDetail } from '@/skeletons/movieDetail';
-import { useParams } from 'react-router-dom';
+import { SkeletonMovieDetail } from '@/skeletons/SkeletonMovieDetail';
 
+import { useParams } from 'react-router-dom';
 export default function MovieDetail() {
   //객체로 id값 받아오기
   const { id } = useParams();
@@ -19,30 +19,42 @@ export default function MovieDetail() {
       {loading ? (
         <SkeletonMovieDetail />
       ) : (
-        <div className="mx-auto grid max-w-[1080px] grid-cols-8 grid-rows-5 gap-3 p-5">
-          <img
-            src={`${BASE_IMG_URL}${detail.poster_path}`}
-            alt="posterImg"
-            className="col-span-4 row-span-5 aspect-[2/3] object-cover"
-          />
-
-          <h1 className="col-span-3 row-span-1 flex items-center justify-center truncate bg-amber-300 p-4 text-center text-2xl font-bold">
-            제목 {detail.title}
-          </h1>
-          <h3 className="col-span-1 row-span-1 flex items-center justify-center bg-green-300 text-lg text-gray-600">
-            평점
-            {detail.vote_average}
-          </h3>
-          <div className="col-span-4 row-span-1 flex items-center justify-around bg-indigo-300 p-3">
-            장르{' '}
-            {detail.genres?.map((itm) => (
-              <p key={itm.id} className="rounded-3xl border px-3">
-                {itm.name}
-              </p>
-            ))}
-          </div>
-          <div className="col-span-4 row-span-3 bg-red-300 p-3">
-            줄거리 : {detail.overview}
+        <div
+          className="relative mx-10 my-10 flex max-w-[1080px] flex-col gap-6 overflow-hidden rounded-xl p-5 md:flex-row"
+          style={{
+            backgroundImage: `url(${BASE_IMG_URL}${detail.backdrop_path || detail.poster_path})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-white/70 backdrop-blur-sm dark:bg-black/70"></div>
+          <div className="relative z-10 flex w-full flex-col gap-6 md:flex-row">
+            <img
+              src={`${BASE_IMG_URL}${detail.poster_path}`}
+              alt="posterImg"
+              className="w-full max-w-sm rounded-xl object-cover shadow-md"
+            />
+            <div className="flex flex-1 flex-col gap-4">
+              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+                {detail.title}
+              </h1>
+              <h3 className="inline-block w-fit rounded-lg bg-yellow-400 px-3 py-1 text-sm font-semibold text-white shadow-sm">
+                평점 {detail.vote_average}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {detail.genres?.map((itm) => (
+                  <p
+                    key={itm.id}
+                    className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-700 dark:bg-gray-700 dark:text-gray-200"
+                  >
+                    {itm.name}
+                  </p>
+                ))}
+              </div>
+              <div className="rounded-lg bg-gray-100 p-4 leading-relaxed text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                {detail.overview}
+              </div>
+            </div>
           </div>
         </div>
       )}
