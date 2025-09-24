@@ -3,6 +3,7 @@ import { useFetch } from '@/hook/useFetch';
 import { SkeletonMovieDetail } from '@/skeletons/SkeletonMovieDetail';
 
 import { useParams } from 'react-router-dom';
+import SwitchCase from './SwitchCase';
 export default function MovieDetail() {
   //객체로 id값 받아오기
   const { id } = useParams();
@@ -16,9 +17,7 @@ export default function MovieDetail() {
 
   return (
     <>
-      {loading ? (
-        <SkeletonMovieDetail />
-      ) : (
+      <SwitchCase condition={loading} fallback={<SkeletonMovieDetail />}>
         <div
           className="relative mx-10 my-10 flex max-w-[1080px] flex-col gap-6 overflow-hidden rounded-xl p-5 md:flex-row"
           style={{
@@ -38,10 +37,10 @@ export default function MovieDetail() {
               <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
                 {detail.title}
               </h1>
-              <h3 className="inline-block w-fit rounded-lg bg-yellow-400 px-3 py-1 text-sm font-semibold text-white shadow-sm">
+              <div className="inline-block w-fit rounded-lg bg-yellow-400 px-3 py-1 text-sm font-semibold text-white shadow-sm">
                 평점 {detail.vote_average}
-              </h3>
-              <div className="flex flex-wrap gap-2">
+              </div>
+              <div className="flex cursor-pointer flex-wrap gap-2">
                 {detail.genres?.map((itm) => (
                   <p
                     key={itm.id}
@@ -57,7 +56,7 @@ export default function MovieDetail() {
             </div>
           </div>
         </div>
-      )}
+      </SwitchCase>
     </>
   );
 }
