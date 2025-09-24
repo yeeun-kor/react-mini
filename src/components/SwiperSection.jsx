@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import MovieCard from './MovieCard';
+import SwitchCase from './SwitchCase';
 
 export default function SwiperSection({ movies, loading }) {
   return (
@@ -21,21 +22,24 @@ export default function SwiperSection({ movies, loading }) {
         1024: { slidesPerView: 5, spaceBetween: 5 },
       }}
     >
-      {loading
-        ? Array.from({
-            length: movies.results ? movies.reusults.length : 20,
-          }).map((_, idx) => (
-            <SwiperSlide key={`skeleton-${idx}`} className="px-5 py-10">
-              <SkeletonMovieList />
-            </SwiperSlide>
-          ))
-        : movies.results?.map((movie) => (
-            <SwiperSlide key={movie.id} className="px-5 py-10">
-              <Link to={`/details/${movie.id}`}>
-                <MovieCard movie={movie} />
-              </Link>
-            </SwiperSlide>
-          ))}
+      <SwitchCase
+        condition={loading}
+        fallback={Array.from({
+          length: movies.results ? movies.results.length : 20,
+        }).map((_, idx) => (
+          <SwiperSlide key={`skeleton-${idx}`} className="px-5 py-10">
+            <SkeletonMovieList />
+          </SwiperSlide>
+        ))}
+      >
+        {movies.results?.map((movie) => (
+          <SwiperSlide key={movie.id} className="px-5 py-10">
+            <Link to={`/details/${movie.id}`}>
+              <MovieCard movie={movie} />
+            </Link>
+          </SwiperSlide>
+        ))}
+      </SwitchCase>
     </Swiper>
   );
 }
