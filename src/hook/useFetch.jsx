@@ -1,6 +1,7 @@
 import { API_KEY } from '@/data/movieApi';
 import { useEffect, useState } from 'react';
 
+//전체 영화 데이터 정보들 갖고 오는 로직.
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
   //비동기 처리 응답요청이 제대로 되었는지 상태플래그 설정

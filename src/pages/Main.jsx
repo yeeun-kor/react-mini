@@ -1,4 +1,4 @@
-import { API_URL } from '@/data/movieApi';
+import { API_URL, UPCOMING_URL } from '@/data/movieApi';
 import { useFetch } from '@/hook/useFetch';
 // Swiper import 수정
 // Swiper 스타일 import 추가
@@ -14,14 +14,22 @@ import 'swiper/css/pagination';
 
 export default function Main() {
   const { data: movies, loading, error } = useFetch(API_URL);
+  const {
+    data: upcomingMovies,
+    upcomingLoading,
+    upcomingError,
+  } = useFetch(UPCOMING_URL);
 
   return (
     <main>
       {/* 새로운 영화 리스트  */}
       <h1 className="mx-auto my-12 w-fit rounded-xl bg-indigo-400 px-6 py-3 text-center text-3xl font-bold text-white shadow-md dark:bg-indigo-500">
-        🎞️ NEW MOVIES 🎞️
+        🎞️ UPCOMING MOVIES 🎞️
       </h1>
-      <SwiperSection movies={movies} loading={loading}></SwiperSection>
+      <SwiperSection
+        movies={upcomingMovies}
+        loading={upcomingLoading}
+      ></SwiperSection>
 
       {/* 인기 영화 리스트 */}
       <h1 className="mx-auto my-12 w-fit rounded-xl bg-amber-400 px-6 py-3 text-center text-3xl font-bold text-white shadow-md dark:bg-amber-500">

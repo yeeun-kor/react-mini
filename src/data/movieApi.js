@@ -6,7 +6,11 @@ export const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 //영화리스트 api
 export const API_URL =
-  'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko&page=1&sort_by=popularity.desc';
+  'https://api.themoviedb.org/3/movie/now_playing?language=ko&page=1&region=kr';
+
+//상영예정작
+export const UPCOMING_URL =
+  'https://api.themoviedb.org/3/movie/upcoming?language=ko&page=1&region=kr';
 
 //영화디테일 api
 export const DETAIL_URL = 'https://api.themoviedb.org/3/movie/';
