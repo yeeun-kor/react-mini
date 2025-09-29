@@ -33,3 +33,6 @@ jobs:
         run: |
           aws s3 rm --recursive s3://oz-movie
           aws s3 cp ./dist s3://oz-movie --recursive
+
+      - name: CloudFront 무효화 invalidation
+        run: aws cloudfront create-invalidation --distribution-id ECD1RUQO68U3B --paths "/*"
