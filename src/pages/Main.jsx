@@ -1,4 +1,4 @@
-import { API_URL, UPCOMING_URL } from '@/data/movieApi';
+import { ENDPOINTS } from '@/data/movieApi';
 import { useFetch } from '@/hook/useFetch';
 // Swiper import 수정
 // Swiper 스타일 import 추가
@@ -13,12 +13,26 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export default function Main() {
-  const { data: movies, loading, error } = useFetch(API_URL);
+  const {
+    data: movies,
+    loading,
+    error,
+  } = useFetch(ENDPOINTS.nowPlaying, {
+    params: {
+      language: 'ko',
+      region: 'kr',
+    },
+  });
   const {
     data: upcomingMovies,
     upcomingLoading,
     upcomingError,
-  } = useFetch(UPCOMING_URL);
+  } = useFetch(ENDPOINTS.upcoming, {
+    params: {
+      language: 'ko',
+      region: 'kr',
+    },
+  });
 
   return (
     <main>
@@ -29,6 +43,7 @@ export default function Main() {
       <SwiperSection
         movies={upcomingMovies}
         loading={upcomingLoading}
+        error={upcomingError}
       ></SwiperSection>
 
       {/* 인기 영화 리스트 */}

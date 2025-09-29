@@ -1,4 +1,4 @@
-import { BASE_IMG_URL, DETAIL_URL } from '@/data/movieApi';
+import { BASE_IMG_URL, ENDPOINTS } from '@/data/movieApi';
 import { useFetch } from '@/hook/useFetch';
 import { SkeletonMovieDetail } from '@/skeletons/SkeletonMovieDetail';
 
@@ -13,7 +13,12 @@ export default function MovieDetail() {
     data: detail,
     loading,
     error,
-  } = useFetch(`${DETAIL_URL}${id}?language=ko`);
+  } = useFetch(ENDPOINTS.detail(`${id}`), {
+    params: {
+      language: 'ko',
+      region: 'kr',
+    },
+  });
 
   return (
     <>
