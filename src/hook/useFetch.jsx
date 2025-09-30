@@ -1,29 +1,22 @@
-import { API_KEY } from '@/data/movieApi';
+import { api } from '@/data/api';
 import { useEffect, useState } from 'react';
 
-export const useFetch = (url) => {
+//! URL에 값에 따른 데이터 통신 리액트 훅 생성
+export const useFetch = (url, params) => {
+  //응답받은 데이터를 상태값으로 관리 할 것.
   const [data, setData] = useState([]);
-  //비동기 처리 응답요청이 제대로 되었는지 상태플래그 설정
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const options = {
-          method: 'GET',
-          headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${API_KEY}`,
-          },
-        };
-        const res = await fetch(url, options);
-        const json = await res.json();
-        console.log(json);
-        setData(json);
-        setLoading(false); //로딩완료되었는지
-      } catch (error) {
-        console.log(error);
-        setError(error);
+        const res = await api.get(url, params);
+        setData(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.log(err.message);
+        setError(err);
       }
     };
     fetchData();
