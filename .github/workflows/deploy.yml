@@ -16,6 +16,9 @@ jobs:
 
       - name: build하기
         run: npm run build
+        env:
+          VITE_SUPABASE_PROJECT_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_API_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
 
       - name: .dist 폴더 확인
         run: |
