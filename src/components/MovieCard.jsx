@@ -1,4 +1,4 @@
-import { BASE_IMG_URL } from '@/data/movieApi';
+import { BASE_IMG_URL } from '@/data/api';
 
 export default function MovieCard({ movie }) {
   return (

@@ -1,4 +1,4 @@
-import { BASE_IMG_URL, ENDPOINTS } from '@/data/movieApi';
+import { BASE_IMG_URL, ENDPOINTS } from '@/data/api';
 import { useFetch } from '@/hook/useFetch';
 import { SkeletonMovieDetail } from '@/skeletons/SkeletonMovieDetail';
 
