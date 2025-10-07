@@ -1,16 +1,13 @@
-import { ENDPOINTS } from '@/data/movieApi';
-import { useFetch } from '@/hook/useFetch';
-// Swiper import 수정
-// Swiper 스타일 import 추가
-
-import MovieCard from '@/components/MovieCard';
 import SwiperSection from '@/components/SwiperSection';
 import SwitchCase from '@/components/SwitchCase';
+import { ENDPOINTS } from '@/data/api';
+import { useFetch } from '@/hook/useFetch';
 import SkeletonMovieList from '@/skeletons/SkeletonMovieList';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import MovieCard from '../components/MovieCard';
 
 export default function Main() {
   const {
@@ -40,12 +37,12 @@ export default function Main() {
       <h1 className="mx-auto my-12 w-fit rounded-xl bg-indigo-400 px-6 py-3 text-center text-3xl font-bold text-white shadow-md dark:bg-indigo-500">
         🎞️ UPCOMING MOVIES 🎞️
       </h1>
+
       <SwiperSection
         movies={upcomingMovies}
         loading={upcomingLoading}
         error={upcomingError}
       ></SwiperSection>
-
       {/* 인기 영화 리스트 */}
       <h1 className="mx-auto my-12 w-fit rounded-xl bg-amber-400 px-6 py-3 text-center text-3xl font-bold text-white shadow-md dark:bg-amber-500">
         🔥 HOT MOVIES 🔥{' '}

@@ -1,5 +1,5 @@
 import MovieCard from '@/components/MovieCard';
-import { ENDPOINTS } from '@/data/movieApi';
+import { ENDPOINTS } from '@/data/api';
 import { useFetch } from '@/hook/useFetch';
 import { Link, useSearchParams } from 'react-router-dom';
 
