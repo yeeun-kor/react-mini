@@ -1,0 +1,42 @@
+name: CI/CD to S3 And invalidation CloudFront
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 파일 불러오기
+        uses: actions/checkout@v4
+
+      - name: 의존성 설치
+        run: npm i
+
+      - name: build하기
+        run: npm run build
+        env:
+          VITE_SUPABASE_PROJECT_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_API_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
+          VITE_MOVIE_API_KEY: ${{ secrets.VITE_MOVIE_API_KEY }}
+
+      - name: .dist 폴더 확인
+        run: |
+          cd ./dist
+          ls
+
+      - name: S3버킷 삭제(AWS 인증)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ap-northeast-2
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
+
+      - name: S3버킷 삭제 및 리업로드
+        run: |
+          aws s3 rm --recursive s3://oz-movie
+          aws s3 cp ./dist s3://oz-movie --recursive
+
+      - name: CloudFront 무효화 invalidation
+        run: aws cloudfront create-invalidation --distribution-id ECD1RUQO68U3B --paths "/*"
