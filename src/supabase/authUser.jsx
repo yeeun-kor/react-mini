@@ -29,5 +29,3 @@ export const useAuth = () => {
   }
   return auth;
 };
-
-// NavBar에서 const { user } = useAuth();로 로그인 여부를 바로 확인 가능
