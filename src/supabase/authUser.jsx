@@ -1,10 +1,19 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useSupabase } from './client';
 
 // 로그인 유저 세팅
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
+  const supabase = useSupabase();
   const [user, setUser] = useState(null);
+
+  //! 현재 세션 가져오기
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) setUser(session.user);
+    });
+  }, [supabase]);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}
