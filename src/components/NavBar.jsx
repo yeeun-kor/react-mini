@@ -8,12 +8,11 @@ import DarkModeToggle from './DartkBodeToggle';
 import { SearchBar } from './SearchBar';
 
 export default function NavBar() {
-  //로그아웃 기능 구현
   const supabase = useSupabase();
   const { user } = useAuth();
   // 유저이름 확인
-  const userMetaData = user?.user_metadata;
-  console.log(userMetaData);
+  const userMeta = user?.user_metadata;
+  console.log(userMeta);
 
   //로그아웃 버튼
   const handlerSubmit = async () => {
@@ -34,17 +33,23 @@ export default function NavBar() {
         <div className="flex items-center gap-2 md:flex-row">
           {user ? (
             <>
-              <div className="text-sm">
-                안녕하세요, {userMetaData.full_name}님
-              </div>
+              <div className="text-sm">안녕하세요, {userMeta.full_name}님</div>
               <Menu as="div" className="relative ml-3">
                 <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                  <UserCircleIcon
-                    aria-hidden="true"
-                    className="size-12 text-gray-300"
-                  />
+                  {userMeta.avatar_url ? (
+                    <img
+                      className="h-14 w-14 rounded-full"
+                      src={userMeta.avatar_url}
+                      alt="카카오톡 프로필 사진 "
+                    ></img>
+                  ) : (
+                    <UserCircleIcon
+                      aria-hidden="true"
+                      className="size-12 text-gray-300"
+                    />
+                  )}
                 </MenuButton>
 
                 <MenuItems
@@ -52,12 +57,12 @@ export default function NavBar() {
                   className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                 >
                   <MenuItem>
-                    <a
-                      href="#"
+                    <Link
+                      to={'/mypage'}
                       className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                     >
-                      관심목록
-                    </a>
+                      마이페이지
+                    </Link>
                   </MenuItem>
                   <MenuItem>
                     <button

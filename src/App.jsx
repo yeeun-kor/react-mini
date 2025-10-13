@@ -6,6 +6,7 @@ import 'swiper/css';
 import Layout from './components/Layout';
 import Loading from './components/Loading';
 import MovieDetail from './components/MovieDetail';
+import MyPage from './components/MyPage';
 import Login from './pages/Login';
 import { Search } from './pages/Search';
 import { SignUp } from './pages/SignUp';
@@ -27,6 +28,7 @@ export function App() {
               <Route path="/search" element={<Search></Search>}></Route>
               <Route path="/signup" element={<SignUp></SignUp>}></Route>
               <Route path="/login" element={<Login></Login>}></Route>
+              <Route path="/mypage" element={<MyPage></MyPage>}></Route>
             </Route>
           </Routes>
         </Suspense>

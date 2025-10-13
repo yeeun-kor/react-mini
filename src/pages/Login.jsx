@@ -7,7 +7,7 @@ import { validateEmailFn, validatePasswordFn } from '@/utils/validate';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 export default function Login() {
-  const naviagate = useNavigate();
+  const navigate = useNavigate();
   //로그인 유효성 검사
   const [validateEmail, setValidateEmail] = useState('');
   const [validatePassword, setValidatePassword] = useState('');
@@ -20,7 +20,7 @@ export default function Login() {
   const supabase = useSupabase();
   const { setUser } = useAuth();
 
-  //로그인 클릭하여 연동하는 이벤트 처리
+  // 로그인 클릭하여 연동하는 이벤트 처리
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -29,13 +29,30 @@ export default function Login() {
         password: password,
       });
       console.log(data);
-      alert('로그인이 완료되었습니다. ');
-      if (data.user) setUser(data.user);
-      naviagate('/');
+      if (data.user) {
+        alert('로그인이 완료되었습니다. ');
+        return setUser(data.user);
+      }
+      navigate('/');
     } catch (error) {
       alert(error.message);
     }
   }
+
+  //! 카카오로그인 버튼 클릭시 -> supabaqse 로그인 함수 연동
+  const handleKakaoLogin = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: {
+        redirectTo: `https://sxeevjklwoaagyrrwtgr.supabase.co/auth/v1/callback`,
+      },
+    });
+
+    if (error) {
+      console.log('kakao login error', error);
+      alert('카카오 로그인 오류');
+    }
+  };
 
   return (
     <>
@@ -84,7 +101,6 @@ export default function Login() {
             </div>
             <Button text={'로그인'}></Button>
           </form>
-
           <p className="mt-10 text-center text-sm/6 text-gray-500 dark:text-gray-400">
             OZ무비가 처음이신가요?{' '}
             <Link
@@ -94,6 +110,17 @@ export default function Login() {
               간편 가입
             </Link>
           </p>
+          <div className="my-4 flex justify-center gap-2">
+            <button
+              class="rounded-full bg-yellow-500 px-3 py-2 text-white hover:bg-yellow-600 focus:outline-2 focus:outline-offset-2 focus:outline-yellow-500 active:bg-yellow-700"
+              onClick={handleKakaoLogin}
+            >
+              KAKAO Login
+            </button>
+            <button class="rounded-full bg-blue-500 px-3 py-2 text-white hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 active:bg-blue-700">
+              GOOGLE Login
+            </button>
+          </div>
         </div>
       </div>
     </>
